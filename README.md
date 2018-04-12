@@ -11,4 +11,4 @@ The user management pages must consider common user errors and handle them in th
 
 When a user connects from a different IP address, force them to log in again, even if their session is still alive.
 
-- Prof. Daqing Hou
+<strong>Prof. Daqing Hou</strong>
