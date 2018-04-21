@@ -12,3 +12,8 @@ The user management pages must consider common user errors and handle them in th
 When a user connects from a different IP address, force them to log in again, even if their session is still alive.
 
 <strong>Assigned by Prof. Daqing Hou, EE-564 Enterprise Software Development</strong>
+
+
+
+<strong>Login page</strong>
+<img src="AppPhotos/signin.png" alt="login page">
