@@ -30,7 +30,7 @@
     <meta name="author" content="Jared" >
 
     <title>Welcome!</title>
-
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
