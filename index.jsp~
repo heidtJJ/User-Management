@@ -1,7 +1,0 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%
-	String signinPage = "signin.jsp";
-	response.sendRedirect(signinPage);// redirect the user to sign in page
-%>
