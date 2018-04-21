@@ -16,4 +16,11 @@ When a user connects from a different IP address, force them to log in again, ev
 
 
 <strong>Login page</strong>
-<img src="AppPhotos/signin.png" alt="login page">
+<img src="AppPhotos/signin.png" alt="Login Page">
+
+<strong>Create Account page</strong>
+<img src="AppPhotos/signup.png" alt="Create Account Page">
+
+<strong>Welcome page</strong>
+<img src="AppPhotos/welcome.png" alt="Welcome Page">
+
