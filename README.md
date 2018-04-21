@@ -15,12 +15,12 @@ When a user connects from a different IP address, force them to log in again, ev
 
 
 
-<h1>Login page</h1>
+<h2>Login page</h2>
 <img src="AppPhotos/signin.png" alt="Login Page">
 
-<h1>Create Account page</h1>
+<h2>Create Account page</h2>
 <img src="AppPhotos/signup.png" alt="Create Account Page">
 
-<h1>Welcome page</h1>
+<h2>Welcome page</h2>
 <img src="AppPhotos/welcome.png" alt="Welcome Page">
 
