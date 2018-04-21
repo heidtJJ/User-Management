@@ -5,10 +5,10 @@ The UserManagement must not save the user's passwords directly as plain text as 
 
 All data must be stored in a mysql database.
 
-You must defend against SQL Injection attacks.
+SQL Injection attacks are prevented.
 
 The user management pages must consider common user errors and handle them in the most user friendly ways. In particular, when the user commits an error and is required to correct it, the system must preserve their work.
 
 When a user connects from a different IP address, force them to log in again, even if their session is still alive.
 
-<strong>Assigned by Prof. Daqing Hou, Enterprise Software Development</strong>
+<strong>Assigned by Prof. Daqing Hou, EE-564 Enterprise Software Development</strong>
