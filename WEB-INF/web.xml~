@@ -144,23 +144,6 @@
         <servlet-name>Signup</servlet-name>
         <servlet-class>Signup</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Signin</servlet-name>
-        <servlet-class>Signin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>Logout</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CookieExample</servlet-name>
-        <servlet-class>CookieExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SessionExample</servlet-name>
-        <servlet-class>SessionExample</servlet-class>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>ChatServlet</servlet-name>
         <url-pattern>/jsp/chat/chat</url-pattern>
@@ -168,42 +151,6 @@
     <servlet-mapping>
         <servlet-name>CompressionFilterTestServlet</servlet-name>
         <url-pattern>/CompressionTest</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HelloWorldExample</servlet-name>
-        <url-pattern>/servlets/servlet/HelloWorldExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestInfoExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestInfoExample/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestHeaderExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestHeaderExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestParamExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestParamExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Signup</servlet-name>
-        <url-pattern>/servlets/servlet/Signup</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Signin</servlet-name>
-        <url-pattern>/servlets/servlet/Signin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/servlets/servlet/Logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CookieExample</servlet-name>
-        <url-pattern>/servlets/servlet/CookieExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SessionExample</servlet-name>
-        <url-pattern>/servlets/servlet/SessionExample</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletToJsp</servlet-name>

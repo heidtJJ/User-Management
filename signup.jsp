@@ -1,27 +1,47 @@
-<section><section></section></section><%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@page import="UserManager.UserManager"%>
 
-<c:if test="${param.email != null && param.password != null && param.passwordRepeat != null}">
-	<%
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String passwordRepeat = request.getParameter("passwordRepeat");
+<%
+	String welcomePage = "welcome.jsp";
+
+	// Check if user is already authenticated.
+	if(session.getAttribute("authed") != null){
+		// Check to see if host has changed.
+		if( session.getAttribute("authed").equals( UserManager.getLocalAddress() ) ){
+  			response.sendRedirect(welcomePage);// redirect the user to signed in page
+		}
+		else{
+			session.removeAttribute("authed");// remove the invalid authenticated variable
+		}
+	}
+	
+	boolean formSubmitted = false;
+	boolean userExists = false;
+	
+	String userEmail = request.getParameter("email");
+	String userPassword = request.getParameter("password");
+	String userPassRepeat = request.getParameter("passwordRepeat");
+
+	if(userEmail != null && userPassword != null && userPassRepeat != null){
+	
+		formSubmitted = true;
 		
-		// 
+		try {
+			userExists = UserManager.existsInTable(userEmail);	
+		} catch (Exception e) {
+			out.println(e);	
+			e.printStackTrace();
+		}
 		
-		out.println(email);
-		out.println(password);
-		out.println(passwordRepeat);
-	%>
-</c:if>
-
-
+	}	
+%>	
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>Sign Up</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -55,11 +75,42 @@
 					<span class="login100-form-title">
 						Create Your Account
 					</span>
-					
+<%
+	if(!formSubmitted){
+%>					
 					<div class="alert alert-danger" role="alert" style="display:none">
 						<strong>Oh snap!</strong> Change a few things up and try submitting again.
-					</div>				
-				
+					</div>									
+<%
+	}
+	else{	
+		if(userExists){	
+%>
+				<div class="alert alert-danger" role="alert">
+					<strong>Oh snap!</strong> This email is already taken!
+				</div>	
+<%	
+		}
+		else{
+			boolean success = UserManager.insertIntoTable(userEmail, userPassword);		
+		
+			if(success){
+				// create session var and redirect
+				session.setAttribute( "authed", UserManager.getLocalAddress() );
+				session.setAttribute( "email", userEmail );// only used for welcoming the user
+  				response.sendRedirect(welcomePage);
+  			}
+  			else{
+%>
+				<div class="alert alert-danger" role="alert">
+					<strong>Oh snap!</strong> Could not insert you into our database!
+				</div>	
+<%	
+  			}
+
+		}
+	}
+%>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
@@ -76,7 +127,7 @@
 						</span>
 					</div>
 					
-					<div id="password-retry" class="wrap-input100 validate-input"  data-validate="Password is required">
+					<div id="password-retry" class="wrap-input100 validate-input"  data-validate="Password-Retry is required">
 						<input class="input100" type="password" name="passwordRepeat" placeholder="Re-enter Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -127,9 +178,9 @@
 			var obj = {};
 			obj.result = true;
 	
-			if(p.length < 15){
+			if(p.length < 8){
 				obj.result=false;
-				obj.error="Not long enough!"
+				obj.error="The password is not long enough!"
 				return obj;
 			}
 
@@ -148,26 +199,42 @@
 					numSpecials++;
 			}
 	
-			if(numUpper < 2 || numLower < 2 || numNums < 2 || numSpecials <2){
+			if(numUpper < 1 || numLower < 1 || numNums < 1 || numSpecials <1){
 				obj.result=false;
-				obj.error="Wrong Format!";
+				obj.error="Password must contain at least 1 uppercase character, lowercase character, number, AND special character!";
 				return obj;
 			}
 			return obj;
 		}
-				
+		
 		
 		$(".login100-form").submit(function( event ) {
   			var password = $('[name="password"]').val();
   			var passwordRepeat = $('[name="passwordRepeat"]').val();
+			var errorMessage = "";  			
+  			
+  			// Error Checking
   			if(password != passwordRepeat){
-				$('.alert').show();
-				event.preventDefault();
-  			}
-  			else{
-  				$('.alert').hide();
+				errorMessage += "The passwords which you entered are different!<br>";
   			}
   			
+  			if(errorMessage == "" && password != ""){
+  				var goodPass = isOkPass(password);
+  				if(goodPass.result == false){
+					 errorMessage += errorMessage + goodPass.error + "<br>";	
+  				}
+			}
+
+			// Handle Errors
+			if(errorMessage == ""){
+				$('.alert').hide();
+  			}
+  			else{
+  				event.preventDefault();
+  				$('.alert').show();
+  				errorMessage = "<strong>Oh snap!</strong> " + errorMessage;
+				$('.alert').html(errorMessage);  			
+  			}
 		});		
 		
 	</script>
