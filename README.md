@@ -38,16 +38,18 @@ The user management pages must consider common user errors and handle them in th
     );
 ~~~~
   </li>
-  <li>Now start the application. Go to the apache-tomcat directory and enter the bin folder. Using the terminal (on linux), enter the following command to start the Apache Tomcat server.
+  <li>Now start the application. Go to the apache-tomcat directory and enter the bin folder. Using the terminal (while on linux), enter the following command to start the Apache Tomcat server.
 
 ~~~~
     ./startup.sh
 ~~~~
-Note: to shut down the Apache Tomcat server, use the following command (using linux).
+Note: to shut down the Apache Tomcat server, use the following command (while using linux).
 ~~~~
     ./shutdown.sh
 ~~~~
 </li>
+<li>Now, in an internet browser, go to: <a href-"http://localhost:8080/user-management/signin.jsp">http://localhost:8080/user-management/signin.jsp</a></li>
+
 </ol>  
 
 <h2>Login page</h2>
