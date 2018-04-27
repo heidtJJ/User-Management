@@ -44,7 +44,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 </web-app>
 ~~~~
 Again, adjust the xml to the database name which you created (i.e EE564).
+<br><br>
   </li>
+<li>
+Put mysql-connector-java-5.1.46-bin.jar and mysql-connector-java-5.1.46.jar into the /lib folder under apache-tomcat. You can download these at <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">https://dev.mysql.com/downloads/connector/j/5.1.html</a>
+</li>
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>.
     <br>Example Query: 
