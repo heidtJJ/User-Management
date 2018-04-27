@@ -20,6 +20,25 @@ The user management pages must consider common user errors and handle them in th
   </li><br>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
   </li><br>
+    <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
+    <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. This is shown below:
+    <br>
+
+~~~~
+    CREATE DATABASE EE564;
+~~~~
+    
+  </li><br>
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below:
+
+ ~~~~
+    CREATE TABLE USERS (
+      id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+      email VARCHAR(30),
+      password VARCHAR(65353)
+    );
+~~~~
+  </li><br>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. Steps are also shown below:
 <br><br><strong>Insert the following xml code snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory.
@@ -51,25 +70,6 @@ Adjust the xml code to match the database name which you created (i.e EE564).
 <li>
 Put mysql-connector-java-5.1.46-bin.jar and mysql-connector-java-5.1.46.jar into the /lib folder under apache-tomcat. You can download these at <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">https://dev.mysql.com/downloads/connector/j/5.1.html</a>. You may need to create an accout.
 </li><br>
-  <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
-    <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. This is shown below:
-    <br>
-
-~~~~
-    CREATE DATABASE EE564;
-~~~~
-    
-  </li><br>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below:
-
- ~~~~
-    CREATE TABLE USERS (
-      id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-      email VARCHAR(30),
-      password VARCHAR(65353)
-    );
-~~~~
-  </li><br>
   <li>Now start the application. Go to the apache-tomcat directory and enter the bin folder. Using the terminal (while on linux), enter the following command to start the Apache Tomcat server.
 
 ~~~~
