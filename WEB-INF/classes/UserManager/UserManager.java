@@ -21,81 +21,84 @@ import java.net.SocketException;
  * @author Jared Heidt <jaredjheidt@gmail.com>
  */
 
-
-
 public class UserManager {
 	
 	private static final String DB_USER = "root";
 	private static final String DB_NAME = "EE564";
 	private static final String DB_PASSWORD = "CAN'T TELL YA";
+	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
 	private static final String selectSQL = "SELECT * FROM `USERS` WHERE email = ? LIMIT 1";
 	private static final String insertSQL = "INSERT INTO `USERS` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
-	
-	public static String getLocalAddress() throws SocketException
+
+	/*
+		returns the IP address of the user as a string
+	*/
+		public static String getLocalAddress() throws SocketException
 	{
 		Enumeration<NetworkInterface> ifaces = NetworkInterface.getNetworkInterfaces();
-		while( ifaces.hasMoreElements() ){
+		while( ifaces.hasMoreElements() ) {
 			NetworkInterface iface = ifaces.nextElement();
 			Enumeration<InetAddress> addresses = iface.getInetAddresses();
 
-			while( addresses.hasMoreElements() ){
+			while( addresses.hasMoreElements() ) {
 				InetAddress addr = addresses.nextElement();
-				if( addr instanceof Inet4Address && !addr.isLoopbackAddress() ){
+				if ( addr instanceof Inet4Address && !addr.isLoopbackAddress() ) {
 					return addr.toString();
 				}
 			}
 		}
-
 		return null;
 	}
 
-	public static boolean authenticateUser(String userEmail, String userPassword) throws SQLException{
+	/* 
+		Connects to mysql database and authenticates the user.
+	 	return true if authenticated, false otherwise
+	*/
+	public static boolean authenticateUser(String userEmail, String userPassword) throws SQLException {
 		PreparedStatement preparedStatement = null;
 		Connection dbConnection = null;
 		ResultSet rs = null;
-		int rowcount = 0;
 		boolean authenticated = false;
-		userEmail = userEmail.trim();
+		userEmail = userEmail.trim();// removes whitespace from front and back of email
 
 		try {
 			dbConnection = getDBConnection();
-			preparedStatement = dbConnection.prepareStatement(selectSQL);
+			preparedStatement = dbConnection.prepareStatement( selectSQL );
 			preparedStatement.setString(1, userEmail);
 
 			// execute select SQL stetement
 			rs = preparedStatement.executeQuery();
 			
 			// get row count
-			if (rs.next()){
-				String hashedPassword = rs.getString("password");
-				if( checkpw(userPassword, hashedPassword) ){
-					// password match
-					authenticated = true;
-				}				
+			if ( rs.next() ) {
+				String hashedPassword = rs.getString( DB_PASSWORD_ROW );
+				if ( checkpw(userPassword, hashedPassword) ) authenticated = true;// password match		
 			}				
 
 		} catch (SQLException e) {
-
+		
 			System.out.println(e.getMessage());
 			throw(e);
-
+		
 		} finally {
-
+		
 			if (preparedStatement != null) {
 				preparedStatement.close();
 			}
-
 			if (dbConnection != null) {
 				dbConnection.close();
 			}
-
+		
 		}
 		
 		return authenticated;
 	}
 	
+	/*
+		checks if userEmail already exists in the database
+	*/
 	public static boolean existsInTable(String userEmail) throws SQLException {
 
 		PreparedStatement preparedStatement = null;		
@@ -113,8 +116,7 @@ public class UserManager {
 			rs = preparedStatement.executeQuery();
 			
 			// get row count
-			if (rs.last())
-				rowcount = rs.getRow();
+			if (rs.last()) rowcount = rs.getRow();
 
 		} catch (SQLException e) {
 
@@ -126,13 +128,12 @@ public class UserManager {
 			if (preparedStatement != null) {
 				preparedStatement.close();
 			}
-
 			if (dbConnection != null) {
 				dbConnection.close();
 			}
 
 		}
-		if(rowcount == 0) return false;
+		if (rowcount == 0) return false;
 		else return true;
 	}
 	
