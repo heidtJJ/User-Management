@@ -23,9 +23,25 @@ The user management pages must consider common user errors and handle them in th
     Configure Apache tomcat to connect to sql database. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. In the folder /conf under the apache-tomcat directory, add
     
 ~~~~
-  <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
+  <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
-to context.xml between <context> and </context> 
+to context.xml between <context> and </context>.<br> In web.xml, insert
+~~~~
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+  <description>EE564 User Management</description>
+  <resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>jdbc/EE564</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+</web-app>
+~~~~
+.
   </li>
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>.
