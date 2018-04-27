@@ -24,13 +24,14 @@ import java.net.SocketException;
 public class UserManager {
 	
 	private static final String DB_USER = "root";
-	private static final String DB_NAME = "EE564";
+	private static final String DB_NAME = "EE564";// database name
+	private static final String DB_TABLE = "USERS";// table name for user credentials
 	private static final String DB_PASSWORD = "Mypassword1!";
 	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
-	private static final String selectSQL = "SELECT * FROM `USERS` WHERE email = ? LIMIT 1";
-	private static final String insertSQL = "INSERT INTO `USERS` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
+	private static final String selectSQL = "SELECT * FROM `" + DB_TABLE + "` WHERE email = ? LIMIT 1";
+	private static final String insertSQL = "INSERT INTO `" + DB_TABLE + "` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
 
 	/*
 		returns the IP address of the user as a string
@@ -926,4 +927,3 @@ public class UserManager {
 
 	
 }
-
