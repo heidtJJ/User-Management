@@ -38,7 +38,7 @@ The user management pages must consider common user errors and handle them in th
       password VARCHAR(65353)
     );
 ~~~~
-<img src="database.png" alt="picture of database organization">
+<img src="AppPhotos/database.png" alt="picture of database organization">
 
   </li><br>
   <li>
