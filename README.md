@@ -18,7 +18,7 @@ The user management pages must consider common user errors and handle them in th
 <h4>Setting up the web app</h4>
 <ol type="1">
   <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed</li>
-  <li>Tea</li>
+  <li>Download this repository, and place <a href="user-management">user-management</a> in the webapps folder.</li>
   <li>Milk</li>
 </ol>  
 
