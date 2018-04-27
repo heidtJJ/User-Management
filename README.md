@@ -15,6 +15,13 @@ The user management pages must consider common user errors and handle them in th
 <strong>Assigned by Prof. Daqing Hou, EE-564 Enterprise Software Development</strong>
 
 
+<h4>Setting up the web app</h4>
+<ol type="1">
+  <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>  
+
 <h2>Login page</h2>
 <img src="AppPhotos/signin.png" alt="Login Page">
 

@@ -25,7 +25,7 @@ public class UserManager {
 	
 	private static final String DB_USER = "root";
 	private static final String DB_NAME = "EE564";
-	private static final String DB_PASSWORD = "Can't tell you";
+	private static final String DB_PASSWORD = "Mypassword1!";
 	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
