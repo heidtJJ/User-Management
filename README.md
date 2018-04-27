@@ -14,26 +14,29 @@ The user management pages must consider common user errors and handle them in th
 
 <strong>Assigned by Prof. Daqing Hou, EE-564 Enterprise Software Development</strong>
 
-
 <h4>Setting up the web app</h4>
 <ol type="1">
-  <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed</li>
+  <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. For my project, I used apache-tomccat-7.0.84.</li>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).</li>
-  <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
+  <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must *modify* DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>
     <br>Example: 
 
 ~~~~
     CREATE DATABASE EE564;
-    CREATE TABLE USERS (
+~~~~
+    
+  </li>
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you *must* modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a> </li>  
+ 
+ ~~~~
+   CREATE TABLE USERS (
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
       email VARCHAR(30),
       password VARCHAR(65353)
     );
 ~~~~
-    
-  </li>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a> </li>
+  
   <li>In the table that you just created</li>
 </ol>  
 
