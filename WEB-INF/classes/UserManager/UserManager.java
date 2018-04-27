@@ -25,7 +25,7 @@ public class UserManager {
 	
 	private static final String DB_USER = "root";
 	private static final String DB_NAME = "EE564";
-	private static final String DB_PASSWORD = "CAN'T TELL YA!";
+	private static final String DB_PASSWORD = "Can't tell you";
 	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
@@ -137,6 +137,9 @@ public class UserManager {
 		else return true;
 	}
 	
+	/*
+		inserts a user into the database while hashing the password
+	*/
 	public static boolean insertIntoTable(String userEmail, String userPassword) throws SQLException {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
@@ -172,7 +175,10 @@ public class UserManager {
 		
 		return success;
 	}
-	
+
+	/*
+		returns the connection to mysql database
+	*/
 	private static Connection getDBConnection() {
 		Connection dbConnection = null;
 		
@@ -673,7 +679,7 @@ public class UserManager {
 	}
 
 	/**
-	 * Initialise the Blowfish key schedule
+	 * Initialize the Blowfish key schedule
 	 */
 	private void init_key() {
 		P = (int[])P_orig.clone();
