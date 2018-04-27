@@ -17,7 +17,16 @@ The user management pages must consider common user errors and handle them in th
 <h3>Setting up the web app</h3>
 <ol type="1">
   <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. During my development, I used apache-tomccat-7.0.84.</li>
-  <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).</li>
+  <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
+  </li>
+  <li>
+    Configure Apache tomcat to connect to sql database. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. In the folder /conf under the apache-tomcat directory, add
+    
+~~~~
+  <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
+~~~~
+to context.xml between <context> and </context> 
+  </li>
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>.
     <br>Example Query: 
