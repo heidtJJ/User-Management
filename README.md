@@ -20,13 +20,13 @@ The user management pages must consider common user errors and handle them in th
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
   </li>
   <li>
-    Configure Apache tomcat to connect to sql database. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. <strong>Insert the following xml snippet</strong> into context.xml in the folder /conf under the apache-tomcat directory.
+    <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. <strong>Insert the following xml snippet</strong> into context.xml in the folder /conf under the apache-tomcat directory.
     
 ~~~~
   <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
 Put this snippet between \<context> and \</context>. Adjust the xml code based on the database name and password which you have create.
-<br> In web.xml, <strong>insert the following xml snippet:</strong>
+<br><br> In web.xml, <strong>insert the following xml snippet:</strong>
 
 ~~~~
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
