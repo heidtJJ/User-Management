@@ -22,17 +22,9 @@ The user management pages must consider common user errors and handle them in th
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>
     <br>ex: 
-    ~~~~
-    CREATE DATABASE EE564;
-    ~~~~
-    
-~~~~
-apply plugin: 'com.android.application'
-apply plugin: 'io.objectbox'
 
-android {
-  
-}
+~~~~
+    CREATE DATABASE EE564;
 ~~~~
     
   </li>
