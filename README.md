@@ -16,9 +16,10 @@ The user management pages must consider common user errors and handle them in th
 
 <h3>Setting up the web app</h3>
 <ol type="1">
-  <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. During my development, I used apache-tomccat-7.0.84.</li>
+  <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. During my development, I used apache-tomccat-7.0.84.
+  </li><br>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
-  </li>
+  </li><br>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database.
 <br><br><strong>Insert the following xml snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory.
@@ -58,7 +59,7 @@ Put mysql-connector-java-5.1.46-bin.jar and mysql-connector-java-5.1.46.jar into
     CREATE DATABASE EE564;
 ~~~~
     
-  </li>
+  </li><br>
   <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below in Example Query.
  <br>Example Query: 
 
@@ -69,7 +70,7 @@ Put mysql-connector-java-5.1.46-bin.jar and mysql-connector-java-5.1.46.jar into
       password VARCHAR(65353)
     );
 ~~~~
-  </li>
+  </li><br>
   <li>Now start the application. Go to the apache-tomcat directory and enter the bin folder. Using the terminal (while on linux), enter the following command to start the Apache Tomcat server.
 
 ~~~~
@@ -79,7 +80,7 @@ Note: to shut down the Apache Tomcat server, use the following command (while us
 ~~~~
     ./shutdown.sh
 ~~~~
-</li>
+</li><br>
 <li>Finally, in an internet browser (Chrome, FireFox, etc.), go to: <a href="http://localhost:8080/user-management/signin.jsp">http://localhost:8080/user-management/signin.jsp</a></li>
 
 </ol>  
