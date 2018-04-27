@@ -48,7 +48,7 @@ Note: to shut down the Apache Tomcat server, use the following command (while us
     ./shutdown.sh
 ~~~~
 </li>
-<li>Now, in an internet browser, go to: <a href-"http://localhost:8080/user-management/signin.jsp">http://localhost:8080/user-management/signin.jsp</a></li>
+<li>Now, in an internet browser, go to: <a href-"http://localhost:8080/user-management/signin.jsp"></li>
 
 </ol>  
 
