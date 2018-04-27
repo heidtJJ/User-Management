@@ -21,7 +21,7 @@ The user management pages must consider common user errors and handle them in th
   </li>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database.
-<br><br<<strong>Insert the following xml snippet</strong> into context.xml in the folder /conf under the apache-tomcat directory.
+<br><br><strong>Insert the following xml snippet</strong> into context.xml in the folder /conf under the apache-tomcat directory.
     
 ~~~~
   <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
