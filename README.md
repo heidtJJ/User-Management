@@ -38,6 +38,8 @@ The user management pages must consider common user errors and handle them in th
       password VARCHAR(65353)
     );
 ~~~~
+<img src="database.png" alt="picture of database organization">
+
   </li><br>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. Steps are also shown below:
