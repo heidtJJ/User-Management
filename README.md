@@ -25,6 +25,16 @@ The user management pages must consider common user errors and handle them in th
     ~~~~
     CREATE DATABASE EE564;
     ~~~~
+    
+~~~~
+apply plugin: 'com.android.application'
+apply plugin: 'io.objectbox'
+
+android {
+  
+}
+~~~~
+    
   </li>
   <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a> </li>
   <li>In the table that you just created</li>
