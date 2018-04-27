@@ -43,8 +43,10 @@ The user management pages must consider common user errors and handle them in th
 ~~~~
     ./startup.sh
 ~~~~
-    
-    
+Note: to shut down the Apache Tomcat server, use the following command (using linux).
+~~~~
+    ./shutdown.sh
+~~~~
 </li>
 </ol>  
 
