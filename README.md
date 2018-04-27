@@ -52,16 +52,15 @@ Adjust the xml to the database name which you created (i.e EE564).
 Put mysql-connector-java-5.1.46-bin.jar and mysql-connector-java-5.1.46.jar into the /lib folder under apache-tomcat. You can download these at <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">https://dev.mysql.com/downloads/connector/j/5.1.html</a>. You may need to create an accout.
 </li><br>
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
-    <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>.
-    <br>Example Query: 
+    <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. This is shown below:
+    <br>
 
 ~~~~
     CREATE DATABASE EE564;
 ~~~~
     
   </li><br>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below in Example Query.
- <br>Example Query: 
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below:
 
  ~~~~
     CREATE TABLE USERS (
