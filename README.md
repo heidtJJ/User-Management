@@ -27,7 +27,7 @@ The user management pages must consider common user errors and handle them in th
 ~~~~
     
   </li>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes shown below in Example Query.
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify DB_TABLE in <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below in Example Query.
  <br>Example Query: 
 
  ~~~~
@@ -38,7 +38,14 @@ The user management pages must consider common user errors and handle them in th
     );
 ~~~~
   </li>
-  <li>In the table that you just created</li>
+  <li>Now start the application. Go to the apache-tomcat directory and enter the bin folder. Using the terminal (on linux), enter the following command to start the Apache Tomcat server.
+
+~~~~
+    ./startup.sh
+~~~~
+    
+    
+</li>
 </ol>  
 
 <h2>Login page</h2>
