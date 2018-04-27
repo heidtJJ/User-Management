@@ -21,10 +21,15 @@ The user management pages must consider common user errors and handle them in th
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).</li>
   <li>Create a mysql database called EE564. Feel free to change the name, but if you do, you must modify DB_NAME in 
     <a href="user-management/WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>
-    <br>ex: 
+    <br>Example: 
 
 ~~~~
     CREATE DATABASE EE564;
+    CREATE TABLE USERS (
+      id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+      email VARCHAR(30),
+      password VARCHAR(65353)
+    );
 ~~~~
     
   </li>
