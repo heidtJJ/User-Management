@@ -31,6 +31,7 @@
 			userExists = UserManager.existsInTable(userEmail);	
 		} catch (Exception e) {
 			out.println(e);	
+			out.println("Cannot connect to database.");	
 			e.printStackTrace();
 		}
 		

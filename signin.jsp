@@ -31,6 +31,7 @@
 			authenticated = UserManager.authenticateUser(userEmail, userPassword);
 		} catch (Exception e) {
 			out.println(e);	
+			out.println("Cannot connect to database.");	
 			e.printStackTrace();
 		}
 		

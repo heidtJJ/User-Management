@@ -1,4 +1,4 @@
-package DatabaseManager;
+package UserManager;
 
 import java.util.*;
 import java.sql.DriverManager;
@@ -6,10 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
+import java.io.UnsupportedEncodingException;
 import java.io.PrintWriter;
 import java.io.File;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 
 /**
  * Class used for managing operations with USERS table in EE564 database
@@ -17,75 +21,92 @@ import java.io.File;
  * @author Jared Heidt <jaredjheidt@gmail.com>
  */
 
-
-
-public class DatabaseManager {
+public class UserManager {
 	
 	private static final String DB_USER = "root";
-	private static final String DB_NAME = "EE564";
+	private static final String DB_NAME = "EE564";// database name
+	private static final String DB_TABLE = "USERS";// table name for user credentials
 	private static final String DB_PASSWORD = "Mypassword1!";
+	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
-	
-	
-	public static boolean authenticateUser(String userEmail, String userPassword) throws SQLException{
+	private static final String selectSQL = "SELECT * FROM `" + DB_TABLE + "` WHERE email = ? LIMIT 1";
+	private static final String insertSQL = "INSERT INTO `" + DB_TABLE + "` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
 
-		PreparedStatement preparedStatement = null;		
+	/*
+		returns the IP address of the user as a string
+	*/
+		public static String getLocalAddress() throws SocketException
+	{
+		Enumeration<NetworkInterface> ifaces = NetworkInterface.getNetworkInterfaces();
+		while( ifaces.hasMoreElements() ) {
+			NetworkInterface iface = ifaces.nextElement();
+			Enumeration<InetAddress> addresses = iface.getInetAddresses();
+
+			while( addresses.hasMoreElements() ) {
+				InetAddress addr = addresses.nextElement();
+				if ( addr instanceof Inet4Address && !addr.isLoopbackAddress() ) {
+					return addr.toString();
+				}
+			}
+		}
+		return null;
+	}
+
+	/* 
+		Connects to mysql database and authenticates the user.
+	 	return true if authenticated, false otherwise
+	*/
+	public static boolean authenticateUser(String userEmail, String userPassword) throws SQLException {
+		PreparedStatement preparedStatement = null;
 		Connection dbConnection = null;
 		ResultSet rs = null;
-		int rowcount = 0;
 		boolean authenticated = false;
-		
-		String selectSQL = "SELECT * FROM `USERS` WHERE email = ?";
+		userEmail = userEmail.trim();// removes whitespace from front and back of email
 
 		try {
 			dbConnection = getDBConnection();
-			preparedStatement = dbConnection.prepareStatement(selectSQL);
+			preparedStatement = dbConnection.prepareStatement( selectSQL );
 			preparedStatement.setString(1, userEmail);
-
 
 			// execute select SQL stetement
 			rs = preparedStatement.executeQuery();
 			
 			// get row count
-			if (rs.next()){
-				String hashedPassword = rs.getString("password");
-				
-				if( checkpw(userPassword, hashedPassword) ){
-					// password match
-					authenticated = true;
-				}				
+			if ( rs.next() ) {
+				String hashedPassword = rs.getString( DB_PASSWORD_ROW );
+				if ( checkpw(userPassword, hashedPassword) ) authenticated = true;// password match		
 			}				
 
 		} catch (SQLException e) {
-
+		
 			System.out.println(e.getMessage());
 			throw(e);
-
+		
 		} finally {
-
+		
 			if (preparedStatement != null) {
 				preparedStatement.close();
 			}
-
 			if (dbConnection != null) {
 				dbConnection.close();
 			}
-
+		
 		}
 		
 		return authenticated;
 	}
 	
-	
-	
+	/*
+		checks if userEmail already exists in the database
+	*/
 	public static boolean existsInTable(String userEmail) throws SQLException {
+
 		PreparedStatement preparedStatement = null;		
 		Connection dbConnection = null;
 		ResultSet rs = null;
 		int rowcount = 0;
-		
-		String selectSQL = "SELECT * FROM `USERS` WHERE email = ?";
+		userEmail = userEmail.trim();
 
 		try {
 			dbConnection = getDBConnection();
@@ -96,8 +117,7 @@ public class DatabaseManager {
 			rs = preparedStatement.executeQuery();
 			
 			// get row count
-			if (rs.last())
-				rowcount = rs.getRow();
+			if (rs.last()) rowcount = rs.getRow();
 
 		} catch (SQLException e) {
 
@@ -109,27 +129,27 @@ public class DatabaseManager {
 			if (preparedStatement != null) {
 				preparedStatement.close();
 			}
-
 			if (dbConnection != null) {
 				dbConnection.close();
 			}
 
 		}
-		if(rowcount == 0) return false;
+		if (rowcount == 0) return false;
 		else return true;
 	}
 	
+	/*
+		inserts a user into the database while hashing the password
+	*/
 	public static boolean insertIntoTable(String userEmail, String userPassword) throws SQLException {
-
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 		boolean success = false;
-		
-		String selectSQL = "INSERT INTO `USERS` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
+		userEmail = userEmail.trim();
 
 		try {
 			dbConnection = getDBConnection();
-			preparedStatement = dbConnection.prepareStatement(selectSQL);
+			preparedStatement = dbConnection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, userEmail);
 			preparedStatement.setString(2, hashpw(userPassword, gensalt()));
 
@@ -156,7 +176,10 @@ public class DatabaseManager {
 		
 		return success;
 	}
-	
+
+	/*
+		returns the connection to mysql database
+	*/
 	private static Connection getDBConnection() {
 		Connection dbConnection = null;
 		
@@ -657,7 +680,7 @@ public class DatabaseManager {
 	}
 
 	/**
-	 * Initialise the Blowfish key schedule
+	 * Initialize the Blowfish key schedule
 	 */
 	private void init_key() {
 		P = (int[])P_orig.clone();
@@ -775,7 +798,7 @@ public class DatabaseManager {
 	 * @return	the hashed password
 	 */
 	public static String hashpw(String password, String salt) {
-		DatabaseManager B;
+		UserManager B;
 		String real_salt;
 		byte passwordb[], saltb[], hashed[];
 		char minor = (char)0;
@@ -807,7 +830,7 @@ public class DatabaseManager {
 
 		saltb = decode_base64(real_salt, BCRYPT_SALT_LEN);
 
-		B = new DatabaseManager();
+		B = new UserManager();
 		hashed = B.crypt_raw(passwordb, saltb, rounds,
 		    (int[])bf_crypt_ciphertext.clone());
 
