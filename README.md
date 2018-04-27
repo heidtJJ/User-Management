@@ -14,7 +14,7 @@ The user management pages must consider common user errors and handle them in th
 
 <strong>Assigned by Prof. Daqing Hou, EE-564 Enterprise Software Development</strong>
 
-<h4>Setting up the web app</h4>
+<h3>Setting up the web app</h3>
 <ol type="1">
   <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. During my development, I used apache-tomccat-7.0.84.</li>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).</li>
