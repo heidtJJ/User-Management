@@ -20,12 +20,12 @@ The user management pages must consider common user errors and handle them in th
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
   </li>
   <li>
-    Configure Apache tomcat to connect to sql database. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. In the folder /conf under the apache-tomcat directory, add
+    Configure Apache tomcat to connect to sql database. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. In the folder /conf under the apache-tomcat directory, in context.xml, add
     
 ~~~~
   <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
-to context.xml between <context> and </context>.<br> In web.xml, insert
+between \<context> and \</context>.<br> In web.xml, insert
 ~~~~
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
