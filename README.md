@@ -25,7 +25,7 @@ The user management pages must consider common user errors and handle them in th
 ~~~~
   <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
-<br> In web.xml, insert
+Put this snippet between \<context> and \</context>.<br> In web.xml, insert
 ~~~~
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
