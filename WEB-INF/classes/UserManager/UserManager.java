@@ -14,6 +14,10 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URL;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
 
 /**
  * Class used for managing operations with USERS table in EE564 database
@@ -24,14 +28,28 @@ import java.net.SocketException;
 public class UserManager {
 	
 	private static final String DB_USER = "root";
-	private static final String DB_NAME = "EE564";// database name
-	private static final String DB_TABLE = "USERS";// table name for user credentials
-	private static final String DB_PASSWORD = "Mypassword1!";
+	private static final String DB_NAME = getContextXMLAttribute("databaseName");// database name
+	private static final String DB_TABLE = getContextXMLAttribute("databaseTable");// table name for user credentials
+	private static final String DB_PASSWORD = getContextXMLAttribute("databasePassword");
 	private static final String DB_PASSWORD_ROW = "password";
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/";
 	private static final String selectSQL = "SELECT * FROM `" + DB_TABLE + "` WHERE email = ? LIMIT 1";
 	private static final String insertSQL = "INSERT INTO `" + DB_TABLE + "` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
+
+
+	public static String getContextXMLAttribute(String attr) {
+		String toReturn = null;
+		try {
+			InitialContext context = new InitialContext();
+			Context xmlNode = (Context) context.lookup("java:comp/env");
+			toReturn = (String) xmlNode.lookup( attr );
+		}
+		catch(Exception e){
+			return null;
+		}
+		return toReturn;
+	}
 
 	/*
 		returns the IP address of the user as a string
@@ -190,6 +208,8 @@ public class UserManager {
 		}
 		
 		try {
+			
+
 			dbConnection = DriverManager.getConnection(
 						DB_CONNECTION + DB_NAME,
 						DB_USER,
