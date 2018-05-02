@@ -38,7 +38,7 @@ public class UserManager {
 	private static final String insertSQL = "INSERT INTO `" + DB_TABLE + "` (`id`, `email`, `password`) VALUES (NULL, ?, ?)";
 
 
-	public static String getContextXMLAttribute(String attr) {
+	private static String getContextXMLAttribute(String attr) {
 		String toReturn = null;
 		try {
 			InitialContext context = new InitialContext();
