@@ -43,7 +43,7 @@ The user management pages must consider common user errors and handle them in th
   </li><br>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. Steps are also shown below:
-<br><br><strong>Insert the following xml code snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory.
+<br><br><strong>Insert the following xml code snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory. You must adjust the xml code based on the username, password, and table name for the database which you created
     
 ~~~~
 <Environment name="databaseName" value="EE564" type="java.lang.String" override="false"/>
@@ -55,7 +55,7 @@ The user management pages must consider common user errors and handle them in th
        username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver"
        url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
-Put this snippet between \<context> and \</context>. Adjust the xml code based on the database name and password which you have created.
+Put this snippet between \<context> and \</context>.
 <br><br> In web.xml, located in the /conf folder, <strong>insert the following xml code snippet:</strong>
 
 ~~~~
