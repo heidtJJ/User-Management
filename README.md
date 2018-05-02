@@ -20,8 +20,7 @@ The user management pages must consider common user errors and handle them in th
   </li><br>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
   </li><br>
-    <li>Create a mysql database called EE564 on your local machine. Feel free to change the name, but if you do, you must modify the DB_NAME variable in 
-    <a href="WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. This is shown below:
+    <li>Create a mysql database called EE564 on your local machine. Feel free to change this database name, but remember it for later.
     <br>
 
 ~~~~
@@ -29,7 +28,7 @@ The user management pages must consider common user errors and handle them in th
 ~~~~
     
   </li><br>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify the DB_TABLE variable in <a href="WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below:
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, feel free to change this table name. Insert the following attributes (id, email, password) as shown below:
 
  ~~~~
     CREATE TABLE USERS (
@@ -43,12 +42,19 @@ The user management pages must consider common user errors and handle them in th
   </li><br>
   <li>
     <strong>Configure Apache tomcat to connect to sql database</strong>. Use <a href="https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html">https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html</a> as a guide for configuring Tomcat to connect to a mysql database. Steps are also shown below:
-<br><br><strong>Insert the following xml code snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory.
+<br><br><strong>Insert the following xml code snippet into context.xml</strong> located in the /conf folder under the apache-tomcat directory. <strong>Adjust the xml code based on the username, password, and table-name for the database that you created.</strong>
     
 ~~~~
-  <Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000" username="root" password="YourPassword" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/EE564"/>
+<Environment name="databaseName" value="EE564" type="java.lang.String" override="false"/>
+<Environment name="databasePassword" value="Mypassword1!" type="java.lang.String" override="false"/>
+<Environment name="databaseTable" value="USERS" type="java.lang.String" override="false"/>
+
+<Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource"
+       maxActive="100" maxIdle="30" maxWait="10000"
+       username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver"
+       url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
-Put this snippet between \<context> and \</context>. Adjust the xml code based on the database name and password which you have created.
+Put this snippet between \<context> and \</context>.
 <br><br> In web.xml, located in the /conf folder, <strong>insert the following xml code snippet:</strong>
 
 ~~~~
