@@ -46,14 +46,14 @@ The user management pages must consider common user errors and handle them in th
 <br><br><strong>Insert the following xml code snippet</strong> into context.xml located in the /conf folder under the apache-tomcat directory.
     
 ~~~~
- 	<Environment name="databaseName" value="EE564" type="java.lang.String" override="false"/>
-	<Environment name="databasePassword" value="Mypassword1!" type="java.lang.String" override="false"/>
-	<Environment name="databaseTable" value="USERS" type="java.lang.String" override="false"/>
-	
-	<Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource"
-               maxActive="100" maxIdle="30" maxWait="10000"
-               username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver"
-               url="jdbc:mysql://localhost:3306/EE564"/>
+<Environment name="databaseName" value="EE564" type="java.lang.String" override="false"/>
+<Environment name="databasePassword" value="Mypassword1!" type="java.lang.String" override="false"/>
+<Environment name="databaseTable" value="USERS" type="java.lang.String" override="false"/>
+
+<Resource name="jdbc/EE564" auth="Container" type="javax.sql.DataSource"
+       maxActive="100" maxIdle="30" maxWait="10000"
+       username="root" password="Mypassword1!" driverClassName="com.mysql.jdbc.Driver"
+       url="jdbc:mysql://localhost:3306/EE564"/>
 ~~~~
 Put this snippet between \<context> and \</context>. Adjust the xml code based on the database name and password which you have created.
 <br><br> In web.xml, located in the /conf folder, <strong>insert the following xml code snippet:</strong>
