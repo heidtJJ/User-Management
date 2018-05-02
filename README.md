@@ -20,8 +20,7 @@ The user management pages must consider common user errors and handle them in th
   </li><br>
   <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
   </li><br>
-    <li>Create a mysql database called EE564 on your local machine. Feel free to change the name, but if you do, you must modify the DB_NAME variable in 
-    <a href="WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. This is shown below:
+    <li>Create a mysql database called EE564 on your local machine. Feel free to change the database name, but remember it for later.
     <br>
 
 ~~~~
@@ -29,7 +28,7 @@ The user management pages must consider common user errors and handle them in th
 ~~~~
     
   </li><br>
-  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, you can change the table name to something different, but if you do, you must modify the DB_TABLE variable in <a href="WEB-INF/classes/UserManager/UserManager.java">UserManager.java</a>. Insert the following attributes (id, email, password) as shown below:
+  <li>In your database (EE564 or whatever you named it), create a table called USERS. Again, feel free to change the table name. Insert the following attributes (id, email, password) as shown below:
 
  ~~~~
     CREATE TABLE USERS (
