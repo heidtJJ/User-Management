@@ -18,7 +18,7 @@ The user management pages must consider common user errors and handle them in th
 <ol type="1">
   <li>Have <a href="http://tomcat.apache.org/">Apache Tomcat</a> installed. During my development, I used apache-tomccat-7.0.84.
   </li><br>
-  <li>Download this repository, and place the <a href="user-management">user-management</a> folder in the webapps folder (in Apache Tomcat directory).
+  <li>Download this repository, and place the user-management folder in the webapps folder (in Apache Tomcat directory).
   </li><br>
     <li>Create a mysql database called EE564 on your local machine. Feel free to change this database name, but remember it for later.
     <br>
